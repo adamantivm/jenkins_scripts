@@ -67,7 +67,15 @@ def test_repositories(ros_distro, repo_list, version_list, workspace, test_depen
     print "Creating rosinstall file for repo list"
     rosinstall = ""
     for repo, version in zip(repo_list, version_list):
-        if version == 'devel':
+        if repo.startswith("git@github"):
+            name = repo.split("/")[-1].split(".")[0]
+            develrepo = rosdistro.DevelDistroRepo(name,{
+                tyle: 'git',
+                url: repo,
+                version: version
+            }
+            rosinstall += develrepo.get_rosinstall()
+        elif version == 'devel':
             if not devel.repositories.has_key(repo):
                 raise BuildException("Repository %s does not exist in Devel Distro"%repo)
             print "Using devel distro file to download repositories"
