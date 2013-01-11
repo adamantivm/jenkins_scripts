@@ -73,7 +73,7 @@ def test_repositories(ros_distro, repo_list, version_list, workspace, test_depen
                 tyle: 'git',
                 url: repo,
                 version: version
-            }
+            })
             rosinstall += develrepo.get_rosinstall()
         elif version == 'devel':
             if not devel.repositories.has_key(repo):
