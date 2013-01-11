@@ -52,7 +52,6 @@ def test_repositories(ros_distro, repo_list, version_list, workspace, test_depen
     print "Installing Debian packages we need for running this script"
     apt_get_install(['python-catkin-pkg', 'python-rosinstall' , 'python-rosdistro'], sudo=sudo)
     import rosdistro
-    import develdistro
 
     # parse the rosdistro file
     print "Parsing rosdistro file for %s"%ros_distro
@@ -70,7 +69,7 @@ def test_repositories(ros_distro, repo_list, version_list, workspace, test_depen
     for repo, version in zip(repo_list, version_list):
         if repo.startswith("git@github"):
             name = repo.split("/")[-1].split(".")[0]
-            develrepo = develdistro.DevelDistroRepo(name,{
+            develrepo = rosdistro.develdistro.DevelDistroRepo(name,{
                 tyle: 'git',
                 url: repo,
                 version: version
