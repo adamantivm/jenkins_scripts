@@ -70,7 +70,7 @@ def test_repositories(ros_distro, repo_list, version_list, workspace, test_depen
         if repo.startswith("git@github"):
             name = repo.split("/")[-1].split(".")[0]
             develrepo = rosdistro.develdistro.DevelDistroRepo(name,{
-                'style': 'git',
+                'type': 'git',
                 'url': repo,
                 'version': version
             })
